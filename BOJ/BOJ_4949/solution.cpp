@@ -1,39 +1,52 @@
 #include <iostream>
-#include <stack>
 #include <string>
+#include <stack>
 using namespace std;
 
-int main() {
+int main()
+{
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
-	while (true) {
+	while (true)
+	{
 		string s;
 		getline(cin, s);
-		stack<char> st;
-		bool isError{};
 		if (s == ".") break;
-		for (char c : s) {
-			if (c == '(' || c == '[') {
+		bool isError{};
+		stack<char> st;
+		for (char c : s)
+		{
+			if (c == '(' || c == '[')
+			{
 				st.push(c);
 			}
-			else if (c == ')') {
-				if (st.empty() || st.top() != '(') {
+			else if (c == ')')
+			{
+				if (!st.empty() && st.top() == '(')
+				{
+					st.pop();
+				}
+				else
+				{
 					isError = true;
 					break;
 				}
-				st.pop();
 			}
-			else if (c == ']') {
-				if (st.empty() || st.top() != '[') {
+			else if (c == ']')
+			{
+				if (!st.empty() && st.top() == '[')
+				{
+					st.pop();
+				}
+				else 
+				{
 					isError = true;
 					break;
 				}
-				st.pop();
 			}
 		}
-		if (!st.empty()) isError = true;
-		if (!isError) cout << "yes\n";
-		else cout << "no\n";
+		if (isError||!st.empty()) cout << "no\n";
+		else cout << "yes\n";
 	}
 }

@@ -2,7 +2,8 @@
 #include <string>
 using namespace std;
 
-int main() {
+int main()
+{
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
@@ -11,17 +12,20 @@ int main() {
 	int count{};
 	int ans{};
 	char prev{};
-	for (char c : s) {
+	for (char c : s)
+	{
 		if (c == '(') count++;
-		else if (prev == '(') {
+		else if (prev == '(')
+		{
 			count--;
-			ans = ans + count;
+			ans += count;
 		}
-		else {
+		else
+		{
 			count--;
-			ans += 1;
+			ans++;
 		}
 		prev = c;
 	}
-	cout << ans; 
+	cout << ans;
 }

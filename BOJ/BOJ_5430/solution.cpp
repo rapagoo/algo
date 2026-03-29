@@ -4,53 +4,62 @@
 #include <algorithm>
 using namespace std;
 
-void parse(string& s, deque<int>& dq) {
-	int cur{};
-	for (int i{ 1 }; i < s.size() - 1; ++i) {
-		if (s[i] == ',') {
-			dq.push_back(cur);
-			cur = 0;
+void parse(string& s, deque<int>& dq)
+{
+	int current{};
+	for (int i{ 1 }; i < s.size() - 1; ++i)
+	{
+		if (s[i] == ',')
+		{
+			dq.push_back(current);
+			current = 0;
 		}
-		else {
-			cur = 10 * cur + (s[i] - '0');
+		else
+		{
+			current = 10 * current + (s[i] - '0');
 		}
 	}
-	if (cur != 0) dq.push_back(cur);
+	if (current != 0) dq.push_back(current);
 }
 
-void print_result(deque<int>& dq) {
+void print_result(deque<int>& dq)
+{
 	cout << '[';
-	for (int i{}; i < dq.size(); ++i) {
+	for (int i{}; i < dq.size(); ++i)
+	{
 		cout << dq[i];
 		if (i + 1 != dq.size()) cout << ',';
 	}
 	cout << "]\n";
 }
 
-int main() {
+int main()
+{
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
 	int T;
 	cin >> T;
-
-	while (T--) {
+	while (T--)
+	{
 		string op;
 		int n;
+		deque<int> dq;
 		string s;
-		cin >> op;
-		cin >> n;
-		cin >> s;
+		cin >> op >> n >> s;
+		parse(s, dq);
 		bool reversed{};
 		bool isError{};
-		deque<int> dq;
-		parse(s, dq);
-		for (char c : op) {
-			if (c == 'R') {
+		for (char c : op)
+		{
+			if (c == 'R')
+			{
 				reversed = !reversed;
 			}
-			else {
-				if (dq.empty()) {
+			else
+			{
+				if (dq.empty())
+				{
 					isError = true;
 					break;
 				}
@@ -59,7 +68,8 @@ int main() {
 			}
 		}
 		if (isError) cout << "error\n";
-		else {
+		else
+		{
 			if (reversed) reverse(dq.begin(), dq.end());
 			print_result(dq);
 		}

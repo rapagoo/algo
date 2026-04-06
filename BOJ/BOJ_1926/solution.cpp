@@ -13,10 +13,12 @@ int main()
 {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
+
 	cin >> n >> m;
 	for (int i{}; i < n; ++i)
 		for (int j{}; j < m; ++j)
 			cin >> board[i][j];
+
 	int mx{};
 	int num{};
 	for (int i{}; i < n; ++i)
@@ -26,8 +28,8 @@ int main()
 			if (board[i][j] != 1 || vis[i][j]) continue;
 			num++;
 			queue<pair<int, int>> q;
-			vis[i][j] = 1;
 			q.push({ i,j });
+			vis[i][j] = 1;
 			int area{};
 			while (!q.empty())
 			{
@@ -36,10 +38,10 @@ int main()
 				{
 					int nx{ cur.X + dx[dir] };
 					int ny{ cur.Y + dy[dir] };
-					if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
 					if (board[nx][ny] != 1 || vis[nx][ny]) continue;
+					if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
 					vis[nx][ny] = 1;
-					q.push({ nx,ny });
+					q.push({ nx, ny });
 				}
 			}
 			mx = max(mx, area);

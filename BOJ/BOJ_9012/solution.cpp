@@ -1,17 +1,24 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+int main()
+{
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-	int N;
-	cin >> N;
-	while (N--) {
+
+	int T;
+	cin >> T;
+	while (T--)
+	{
 		string s;
 		cin >> s;
 		int count{};
-		for (char c : s) {
-			if (c == '(') count++;
+		for (char c : s)
+		{
+			if (c == '(')
+			{
+				count++;
+			}
 			else count--;
 			if (count < 0) break;
 		}

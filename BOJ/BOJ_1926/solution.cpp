@@ -1,7 +1,7 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-#define X first
+#define X first	
 #define Y second
 int board[502][502];
 bool vis[502][502];

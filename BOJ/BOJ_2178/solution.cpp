@@ -33,7 +33,7 @@ int main()
 			if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
 			if (board[nx][ny] != '1' || dist[nx][ny] >= 0) continue;
 			dist[nx][ny] = dist[cur.X][cur.Y] + 1;
-			q.push({ nx, ny });
+			q.push({ nx,ny });
 		}
 	}
 	cout << dist[n - 1][m - 1] + 1;
